@@ -86,3 +86,6 @@ if __name__ == "__main__":
     # answer = fp.query("What's my total spending?")
     # print(answer)
 
+
+
+
