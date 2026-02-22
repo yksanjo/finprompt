@@ -2,11 +2,15 @@
 FinPrompt: Local LLM for Secure Financial Querying
 """
 
-import ollama
 import pandas as pd
 import re
 from typing import List, Dict
 from loguru import logger
+
+try:
+    import ollama
+except ImportError:
+    ollama = None
 
 
 class FinPrompt:
@@ -36,6 +40,8 @@ class FinPrompt:
         """Answer a question about financial data."""
         if self.data is None:
             return "No data loaded. Please import a CSV file first."
+        if ollama is None:
+            return "Error: ollama package is not installed"
         
         # Generate summary of data
         summary = self._generate_summary()
@@ -85,7 +91,6 @@ if __name__ == "__main__":
     # fp.load_csv("transactions.csv")
     # answer = fp.query("What's my total spending?")
     # print(answer)
-
 
 
 
